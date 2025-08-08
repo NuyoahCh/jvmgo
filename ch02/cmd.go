@@ -11,6 +11,7 @@ type Cmd struct {
 	helpFlag    bool     // 是否显示帮助信息
 	versionFlag bool     // 是否显示版本信息
 	cpOption    string   // classpath 选项的值
+	XjreOption  string   // -Xjre 选项的值
 	class       string   // 要执行的主类名
 	args        []string // 传递给主类的参数
 }
@@ -32,6 +33,9 @@ func parseCmd() *Cmd {
 	// 绑定 cpOption 到 --classpath 和 -cp 选项，用于指定 classpath
 	flag.StringVar(&cmd.cpOption, "classpath", "", "classpath")
 	flag.StringVar(&cmd.cpOption, "cp", "", "classpath")
+
+	// 绑定 XjreOption 到 -Xjre 选项，用于指定 JRE 路径
+	flag.StringVar(&cmd.XjreOption, "Xjre", "", "path to jre")
 
 	// 解析命令行参数
 	flag.Parse()
