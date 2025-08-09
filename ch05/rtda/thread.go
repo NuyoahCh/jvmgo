@@ -37,3 +37,8 @@ func (self *Thread) PopFrame() *Frame {
 func (self *Thread) CurrentFrame() *Frame {
 	return self.stack.top() // 返回栈顶的栈帧
 }
+
+// NewFrame 创建一个新的栈帧，并将其与当前线程关联
+func (self *Thread) NewFrame(maxLocals, maxStack uint) *Frame {
+	return newFrame(self, maxLocals, maxStack)
+}

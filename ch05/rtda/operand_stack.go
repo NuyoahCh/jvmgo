@@ -84,3 +84,15 @@ func (self *OperandStack) PopRef() *Object {
 	self.slots[self.size].ref = nil
 	return ref
 }
+
+// PushSlot 将一个槽位压入操作数栈
+func (self *OperandStack) PushSlot(slot Slot) {
+	self.slots[self.size] = slot
+	self.size++
+}
+
+// PopSlot 弹出操作数栈顶的槽位
+func (self *OperandStack) PopSlot() Slot {
+	self.size--
+	return self.slots[self.size]
+}

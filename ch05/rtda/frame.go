@@ -4,13 +4,16 @@ type Frame struct {
 	lower        *Frame        // 下一个栈帧
 	localVars    LocalVars     // 局部变量表
 	operandStack *OperandStack // 操作数栈
-	// todo
+	thread       *Thread       // 所属线程
+	nextPC       int           // 下一条指令的地址
 }
 
-func NewFrame(maxLocals, maxStack uint) *Frame {
+// newFrame 创建一个新的栈帧
+func newFrame(thread *Thread, maxLocals, maxStack uint) *Frame {
 	return &Frame{
-		localVars:    newLocalVars(maxLocals),   // 创建局部变量表
-		operandStack: newOperandStack(maxStack), // 创建操作数栈
+		thread:       thread,
+		localVars:    newLocalVars(maxLocals),
+		operandStack: newOperandStack(maxStack),
 	}
 }
 
